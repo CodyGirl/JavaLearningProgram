@@ -1,39 +1,33 @@
 package college; 
 import java.util.Scanner;
+import java.util.Arrays;
 public class anagram {
-   public static void last(){
-       System.out.println("It is not an ANAGRAM!!!");
-       
+   public static void isAnagram(String s1,String s2){
+   String copyofs1=s1.replaceAll("\\s"," ");
+   String copyofs2=s2.replaceAll("\\s"," ");
+   boolean status=true;
+   if(copyofs1.length()==copyofs2.length()){
+       char[] s1Array=copyofs1.toLowerCase().toCharArray();
+       char[] s2Array=copyofs2.toLowerCase().toCharArray();
+       Arrays.sort(s1Array);
+       Arrays.sort(s2Array);
+       status=Arrays.equals(s1Array,s2Array);
+       if(status){
+       System.out.println(s1+" and "+s2+" are anagrams!!!");}
+       else{
+       System.out.println(s1+" and "+s2+" are not anagrams!!!");
+   }}
+   else{
+       System.out.println(s1+" and "+s2+" are not anagrams!!!");
+   }
    }
     public static void main(String args[]){
-         String word1,word2;
-         int len1,len2,i,j,count=0;
-         char let1,let2;
+        String s1,s2;
          Scanner sc=new Scanner(System.in);
          System.out.println("Enter your first word:");
-         word1=sc.nextLine();
+         s1=sc.nextLine();
          System.out.println("Enter your second word to be compared with:");
-         word2=sc.nextLine();
-         len1=word1.length();
-         len2=word2.length();
-         if(len1==len2)
-         {
-         for(i=0;i<=len1-1;i++){
-             let1=word1.charAt(i);
-             for(j=0;j<=len2-1;j++){
-                let2=word2.charAt(j);
-                if(let1==let2){
-                    count++;
-                    continue;
-                }else{
-                     last();
-                     break;
-                }
-                }
-             }
-         
-         }
-    if (count==len1-1) 
-        System.out.println("These two words are ANAGRAM of each other!!!");
-    }    
+         s2=sc.nextLine();
+         isAnagram(s1,s2);
+    }
 }
